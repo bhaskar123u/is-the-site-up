@@ -27,18 +27,22 @@ public class UlrCheckController {
             conn.connect();
 
             int responseCodeCategory = conn.getResponseCode() / 100;
-            if(responseCodeCategory != 2 || responseCodeCategory != 3){
-                returnMessage = SITE_IS_DOWN;
-            }
-            else{
+            System.out.println("DEBUGGING APPLICATION "+responseCodeCategory);
+            if(responseCodeCategory == 2 || responseCodeCategory == 3){
                 returnMessage = SITE_IS_UP;
             }
+            else{
+                returnMessage = SITE_IS_DOWN;
+            }
         } catch (MalformedURLException e) {
+            System.out.println("DEBUGGING APPLICATION MalformedURLException");
             returnMessage = INCORRECT_URL;
         } catch (IOException e) {
+            System.out.println("DEBUGGING APPLICATION IOException");
             returnMessage = SITE_IS_DOWN;
         }
 
+        System.out.println("DEBUGGING APPLICATION "+returnMessage);
         return returnMessage;
     }
 }
